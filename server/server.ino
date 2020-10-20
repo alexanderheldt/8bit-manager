@@ -1,13 +1,11 @@
 #include <WiFi.h>
 #include <WebServer.h>
-
-#define CLK 4
+#include "Signals.h"
 
 const char* ssid = "";
 const char* password = "";
 
-bool CLK_ON = LOW;
-
+Signals s;
 WebServer server(80);
 
 void help() {
@@ -18,38 +16,69 @@ void help() {
 }
 
 void program() {
-  String data = server.arg(0);
+  String request = server.arg(0);
 
-  char program[256];
-  data.toCharArray(program, 256);
+  char program[512];
+  request.toCharArray(program, 512);
 
+  // Split program on new line
   int n = 0;
-  char *lines[256];
+  char *lines[512];
 
-  char *token = strtok(program, "\n");
-  while (token != NULL) {
-    lines[n++] = token;
-    token = strtok(NULL, "\n");
+  char *newLine = strtok(program, "\n");
+  while (newLine != NULL) {
+    lines[n++] = newLine;
+    newLine = strtok(NULL, "\n");
   }
+
+  // split all lines on " "
+  int m = 0;
+  char* addressDataPairs[512];
 
   for (int i = 0; i < n; i++) {
-    Serial.println(lines[i]);
+    char *space = strtok(lines[i], " ");
+    while (space != NULL) {
+      addressDataPairs[m++] = space;
+      space = strtok(NULL, " ");
+    }
   }
 
+  s.enableManualClock();
+
+  for (int i = 0; i < m; i += 2) {
+    char* address = addressDataPairs[i];
+    char* data = addressDataPairs[i+1];
+
+    Serial.print("address: ");
+    Serial.println(address);
+    s.setBus(address);
+    s.pulsePin(s.MI);
+
+    delay(1 * 1000);
+
+    Serial.print("data: ");
+    Serial.println(data);
+    s.setBus(data);
+    s.pulsePin(s.RI);
+
+    delay(1 * 1000);
+  }
+
+  s.disableManualClock();
+
+  // Clear bus
+  s.setBus("00000000");
   server.send(200, "text/plain", "Programming completed");
 }
 
 void healthcheck() {
-  CLK_ON = !CLK_ON;
-  digitalWrite(CLK, CLK_ON);
-
   server.send(200, "text/plain", "A-OK");
 }
 
 void setup() {
   Serial.begin(57600);
 
-  pinMode(CLK, OUTPUT);
+  s.init();
 
   Serial.print("Connecting to wifi");
   WiFi.begin(ssid, password);
