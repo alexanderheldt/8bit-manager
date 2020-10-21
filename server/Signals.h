@@ -9,10 +9,13 @@ class Signals {
     void init();
     void setReadMode();
     void setWriteMode();
+
     void setBus(char data[]);
     void clearBus();
+
     void enableManualClock();
     void disableManualClock();
+
     void pulseClock();
     void pulsePinWithClock(int pin);
     void pulseReset();
