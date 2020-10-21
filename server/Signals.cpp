@@ -95,3 +95,11 @@ void Signals::pulsePinWithClock(int pin) {
   digitalWrite(pin, LOW);
 }
 
+void Signals::pulseReset() {
+  digitalWrite(RESET, LOW);
+  delay(1);
+  digitalWrite(RESET, HIGH);
+  delay(1);
+  digitalWrite(RESET, LOW);
+}
+

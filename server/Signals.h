@@ -15,4 +15,5 @@ class Signals {
     void disableManualClock();
     void pulseClock();
     void pulsePinWithClock(int pin);
+    void pulseReset();
 };
