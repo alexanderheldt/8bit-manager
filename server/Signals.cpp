@@ -66,14 +66,14 @@ void Signals::setWriteMode() {
 };
 
 void Signals::setBus(char data[]) {
-  for (int pin = 0; pin <= 8; pin += 1) {
+  for (int pin = 0; pin < 8; pin += 1) {
     int level = data[pin] == '1' ? HIGH : LOW;
     digitalWrite(dataPins[pin], level);
   }
 };
 
 void Signals::clearBus() {
-  for (int pin = 0; pin <= 8; pin += 1) {
+  for (int pin = 0; pin < 8; pin += 1) {
     digitalWrite(dataPins[pin], LOW);
   }
 }
