@@ -13,6 +13,9 @@ class Signals {
     void setBus(char data[]);
     void clearBus();
 
+    void enableProgrammingMode();
+    void disableProgrammingMode();
+
     void enableManualClock();
     void disableManualClock();
 

@@ -1,9 +1,10 @@
 #include "Arduino.h"
 #include "Signals.h"
 
-// clock signals are active low
+// clock signals and programming mode are active low
 const int CLK_AL = 4;
 const int ENABLE_MANUAL_CLK_AL = 15;
+const int ENABLE_PROGRAMMING_MODE_AL = 32;
 
 const int RESET = 2;
 
@@ -45,12 +46,15 @@ void Signals::init() {
 
   setDataPinsTo(OUTPUT);
 
-  // Clock signals are active low
+  // Clock signals and programming mode are active low
   digitalWrite(CLK_AL, HIGH);
   pinMode(CLK_AL, OUTPUT);
 
   digitalWrite(ENABLE_MANUAL_CLK_AL, HIGH);
   pinMode(ENABLE_MANUAL_CLK_AL, OUTPUT);
+
+  digitalWrite(ENABLE_PROGRAMMING_MODE_AL, HIGH);
+  pinMode(ENABLE_PROGRAMMING_MODE_AL, OUTPUT);
 }
 
 void Signals::setReadMode() {
@@ -72,6 +76,14 @@ void Signals::clearBus() {
   for (int pin = 0; pin <= 8; pin += 1) {
     digitalWrite(dataPins[pin], LOW);
   }
+}
+
+void Signals::enableProgrammingMode() {
+  digitalWrite(ENABLE_PROGRAMMING_MODE_AL, LOW);
+}
+
+void Signals::disableProgrammingMode() {
+  digitalWrite(ENABLE_PROGRAMMING_MODE_AL, HIGH);
 }
 
 void Signals::enableManualClock() {
