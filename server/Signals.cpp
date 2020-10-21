@@ -61,6 +61,12 @@ void Signals::setBus(char data[]) {
   }
 };
 
+void Signals::clearBus() {
+  for (int pin = 0; pin <= 8; pin += 1) {
+    digitalWrite(dataPins[pin], LOW);
+  }
+}
+
 void Signals::enableManualClock() {
   digitalWrite(ENABLE_MANUAL_CLK, HIGH);
 }
