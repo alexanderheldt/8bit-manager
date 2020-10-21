@@ -1,8 +1,10 @@
 #include "Arduino.h"
 #include "Signals.h"
 
-const int CLK = 4; // TODO is this active low?
-const int ENABLE_MANUAL_CLK  = 0; // TODO is this active low?
+// clock signals are active low
+const int CLK_AL = 4;
+const int ENABLE_MANUAL_CLK_AL = 15;
+
 const int RESET = 2;
 
 const int D0 = 22;
@@ -39,11 +41,16 @@ void Signals::init() {
   pinMode(OI, OUTPUT);
   pinMode(FI, OUTPUT);
 
-  pinMode(CLK, OUTPUT);
-  pinMode(ENABLE_MANUAL_CLK, OUTPUT);
   pinMode(RESET, OUTPUT);
 
   setDataPinsTo(OUTPUT);
+
+  // Clock signals are active low
+  digitalWrite(CLK_AL, HIGH);
+  pinMode(CLK_AL, OUTPUT);
+
+  digitalWrite(ENABLE_MANUAL_CLK_AL, HIGH);
+  pinMode(ENABLE_MANUAL_CLK_AL, OUTPUT);
 }
 
 void Signals::setReadMode() {
@@ -68,19 +75,19 @@ void Signals::clearBus() {
 }
 
 void Signals::enableManualClock() {
-  digitalWrite(ENABLE_MANUAL_CLK, HIGH);
+  digitalWrite(ENABLE_MANUAL_CLK_AL, LOW);
 }
 
 void Signals::disableManualClock() {
-  digitalWrite(ENABLE_MANUAL_CLK, LOW);
+  digitalWrite(ENABLE_MANUAL_CLK_AL, HIGH);
 }
 
 void Signals::pulseClock() {
-  digitalWrite(CLK, LOW);
+  digitalWrite(CLK_AL, HIGH);
   delay(1);
-  digitalWrite(CLK, HIGH);
+  digitalWrite(CLK_AL, LOW);
   delay(1);
-  digitalWrite(CLK, LOW);
+  digitalWrite(CLK_AL, HIGH);
 }
 
 void Signals::pulsePinWithClock(int pin) {
