@@ -83,18 +83,13 @@ void Signals::pulseClock() {
   digitalWrite(CLK, LOW);
 }
 
-void Signals::pulsePin(int pin) {
+void Signals::pulsePinWithClock(int pin) {
   digitalWrite(pin, LOW);
   delay(1);
   digitalWrite(pin, HIGH);
   delay(1);
 
-  // Pulse clock while the pin is high
-  digitalWrite(CLK, LOW);
-  delay(1);
-  digitalWrite(CLK, HIGH);
-  delay(1);
-  digitalWrite(CLK, LOW);
+  pulseClock();
   delay(1);
 
   digitalWrite(pin, LOW);

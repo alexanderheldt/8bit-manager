@@ -14,5 +14,5 @@ class Signals {
     void enableManualClock();
     void disableManualClock();
     void pulseClock();
-    void pulsePin(int pin);
+    void pulsePinWithClock(int pin);
 };

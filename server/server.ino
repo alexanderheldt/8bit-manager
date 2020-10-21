@@ -52,14 +52,14 @@ void program() {
     Serial.print("address: ");
     Serial.println(address);
     s.setBus(address);
-    s.pulsePin(s.MI);
+    s.pulsePinWithClock(s.MI);
 
     delay(1 * 1000);
 
     Serial.print("data: ");
     Serial.println(data);
     s.setBus(data);
-    s.pulsePin(s.RI);
+    s.pulsePinWithClock(s.RI);
 
     delay(1 * 1000);
   }
