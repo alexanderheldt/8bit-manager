@@ -44,6 +44,7 @@ void program() {
   }
 
   s.enableManualClock();
+  s.pulseReset();
 
   for (int i = 0; i < m; i += 2) {
     char* address = addressDataPairs[i];
