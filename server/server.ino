@@ -77,6 +77,11 @@ void reset() {
   server.send(200, "text/plain", "Reset completed");
 }
 
+void pulseClock() {
+  s.pulseClock();
+  server.send(200, "text/plain", "Clock pulsed");
+}
+
 void healthcheck() {
   server.send(200, "text/plain", "A-OK");
 }
@@ -101,6 +106,7 @@ void setup() {
   server.on("/", help);
   server.on("/program", program);
   server.on("/reset", reset);
+  server.on("/pulseClock", pulseClock);
   server.on("/healthcheck", healthcheck);
 
   server.begin();
