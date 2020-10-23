@@ -96,29 +96,30 @@ void Signals::disableManualClock() {
 
 void Signals::pulseClock() {
   digitalWrite(CLK_AL, HIGH);
-  delay(1);
+  delay(10);
   digitalWrite(CLK_AL, LOW);
-  delay(1);
+  delay(10);
   digitalWrite(CLK_AL, HIGH);
 }
 
 void Signals::pulsePinWithClock(int pin) {
   digitalWrite(pin, LOW);
-  delay(1);
+  delay(10);
   digitalWrite(pin, HIGH);
-  delay(1);
+  delay(10);
 
   pulseClock();
-  delay(1);
+  delay(10);
 
   digitalWrite(pin, LOW);
+  delay(10);
 }
 
 void Signals::pulseReset() {
   digitalWrite(RESET, LOW);
-  delay(1);
+  delay(10);
   digitalWrite(RESET, HIGH);
-  delay(1);
+  delay(10);
   digitalWrite(RESET, LOW);
 }
 
