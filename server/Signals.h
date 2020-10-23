@@ -16,9 +16,6 @@ class Signals {
     void enableProgrammingMode();
     void disableProgrammingMode();
 
-    void enableManualClock();
-    void disableManualClock();
-
     void pulseClock();
     void pulsePinWithClock(int pin);
     void pulseReset();

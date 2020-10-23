@@ -79,19 +79,13 @@ void Signals::clearBus() {
 }
 
 void Signals::enableProgrammingMode() {
+  digitalWrite(ENABLE_MANUAL_CLK_AL, LOW);
   digitalWrite(ENABLE_PROGRAMMING_MODE_AL, LOW);
 }
 
 void Signals::disableProgrammingMode() {
-  digitalWrite(ENABLE_PROGRAMMING_MODE_AL, HIGH);
-}
-
-void Signals::enableManualClock() {
-  digitalWrite(ENABLE_MANUAL_CLK_AL, LOW);
-}
-
-void Signals::disableManualClock() {
   digitalWrite(ENABLE_MANUAL_CLK_AL, HIGH);
+  digitalWrite(ENABLE_PROGRAMMING_MODE_AL, HIGH);
 }
 
 void Signals::pulseClock() {

@@ -43,7 +43,7 @@ void program() {
     }
   }
 
-  s.enableManualClock();
+  s.enableProgrammingMode();
   s.pulseReset();
 
   for (int i = 0; i < m; i += 2) {
@@ -65,7 +65,7 @@ void program() {
     delay(1 * 1000);
   }
 
-  s.disableManualClock();
+  s.disableProgrammingMode();
 
   // Clear bus
   s.setBus("00000000");
