@@ -72,6 +72,11 @@ void program() {
   server.send(200, "text/plain", "Programming completed");
 }
 
+void reset() {
+  s.pulseReset();
+  server.send(200, "text/plain", "Reset completed");
+}
+
 void healthcheck() {
   server.send(200, "text/plain", "A-OK");
 }
@@ -95,6 +100,7 @@ void setup() {
 
   server.on("/", help);
   server.on("/program", program);
+  server.on("/reset", reset);
   server.on("/healthcheck", healthcheck);
 
   server.begin();
