@@ -65,10 +65,9 @@ void program() {
     delay(1 * 1000);
   }
 
+  s.clearBus();
   s.disableProgrammingMode();
 
-  // Clear bus
-  s.setBus("00000000");
   server.send(200, "text/plain", "Programming completed");
 }
 
