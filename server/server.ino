@@ -65,6 +65,7 @@ void program() {
     delay(1 * 1000);
   }
 
+  s.pulseReset();
   s.clearBus();
   s.disableProgrammingMode();
 
