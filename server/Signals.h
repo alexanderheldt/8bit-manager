@@ -4,7 +4,7 @@
 
 class Signals {
   public:
-    static const int MI, RI, II, AI, BI, OI, FI;
+    static const int MI, RI;
 
     void init();
     void setReadMode();

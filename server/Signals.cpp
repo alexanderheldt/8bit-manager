@@ -21,11 +21,6 @@ const int dataPins[] = { D7, D6, D5, D4, D3, D2, D1, D0 };
 
 const int Signals::MI = 13;
 const int Signals::RI = 12;
-const int Signals::II = 14;
-const int Signals::AI = 27;
-const int Signals::BI = 26;
-const int Signals::OI = 25;
-const int Signals::FI = 33;
 
 void setDataPinsTo(int mode) {
   for (int pin = 0; pin < 8; pin += 1) {
@@ -36,12 +31,6 @@ void setDataPinsTo(int mode) {
 void Signals::init() {
   pinMode(MI, OUTPUT);
   pinMode(RI, OUTPUT);
-  pinMode(II, OUTPUT);
-  pinMode(AI, OUTPUT);
-  pinMode(BI, OUTPUT);
-  pinMode(OI, OUTPUT);
-  pinMode(FI, OUTPUT);
-
   pinMode(RESET, OUTPUT);
 
   setDataPinsTo(OUTPUT);
