@@ -2,11 +2,11 @@
 #include "Signals.h"
 
 // clock signals and programming mode are active low
-const int CLK_AL = 14;
-const int ENABLE_MANUAL_CLK_AL = 27;
+const int CLK_AL = 13;
+const int ENABLE_MANUAL_CLK_AL = 12;
 const int ENABLE_PROGRAMMING_MODE_AL = 32;
 
-const int RESET = 26;
+const int RESET = 14;
 
 const int D0 = 21;
 const int D1 = 19;
@@ -19,8 +19,8 @@ const int D7 = 4;
 
 const int dataPins[] = { D7, D6, D5, D4, D3, D2, D1, D0 };
 
-const int Signals::MI = 13;
-const int Signals::RI = 12;
+const int Signals::MI = 27;
+const int Signals::RI = 26;
 
 void setDataPinsTo(int mode) {
   for (int pin = 0; pin < 8; pin += 1) {
