@@ -8,6 +8,9 @@ class Signals {
 
     void init();
     void setReadMode();
+    void connectToComputer();
+    void disconnectFromComputer();
+
     void setWriteMode();
 
     void setBus(char data[]);

@@ -29,21 +29,42 @@ void setDataPinsTo(int mode) {
 }
 
 void Signals::init() {
+void Signals::connectToComputer() {
+  // Set all pins to active outputs
+  clearBus();
+  setWriteMode();
+
   pinMode(MI, OUTPUT);
   pinMode(RI, OUTPUT);
+
   pinMode(RESET, OUTPUT);
 
-  setDataPinsTo(OUTPUT);
-
-  // Clock signals and programming mode are active low
   digitalWrite(CLK_AL, HIGH);
   pinMode(CLK_AL, OUTPUT);
 
   digitalWrite(ENABLE_MANUAL_CLK_AL, HIGH);
   pinMode(ENABLE_MANUAL_CLK_AL, OUTPUT);
+}
 
-  digitalWrite(ENABLE_PROGRAMMING_MODE_AL, HIGH);
-  pinMode(ENABLE_PROGRAMMING_MODE_AL, OUTPUT);
+void Signals::disconnectFromComputer() {
+  // Set all pins to be high impedance; (INPUTS and LOW)
+  clearBus();
+  setReadMode();
+
+  digitalWrite(MI, LOW);
+  pinMode(MI, INPUT);
+
+  digitalWrite(RI, LOW);
+  pinMode(RI, INPUT);
+
+  digitalWrite(RESET, LOW);
+  pinMode(RESET, INPUT);
+
+  digitalWrite(CLK_AL, LOW);
+  pinMode(CLK_AL, INPUT);
+
+  digitalWrite(ENABLE_MANUAL_CLK_AL, LOW);
+  pinMode(ENABLE_MANUAL_CLK_AL, INPUT);
 }
 
 void Signals::setReadMode() {
