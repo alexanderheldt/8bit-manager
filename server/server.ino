@@ -83,6 +83,67 @@ void pulseClock() {
   server.send(200, "text/plain", "Clock pulsed");
 }
 
+void enableProgrammingMode() {
+  s.enableProgrammingMode();
+  server.send(200, "text/plain", "Programming mode enabled");
+}
+
+void disableProgrammingMode() {
+  s.disableProgrammingMode();
+  server.send(200, "text/plain", "Programming mode disabled");
+}
+
+void enableMI() {
+  digitalWrite(s.MI, HIGH);
+  server.send(200, "text/plain", "MI enabled");
+}
+
+void disableMI() {
+  digitalWrite(s.MI, LOW);
+  server.send(200, "text/plain", "MI disabled");
+}
+
+void enableRI() {
+  digitalWrite(s.RI, HIGH);
+  server.send(200, "text/plain", "RI enabled");
+}
+
+void disableRI() {
+  digitalWrite(s.RI, LOW);
+  server.send(200, "text/plain", "RI disabled");
+}
+
+void connect() {
+  s.connectToComputer();
+  server.send(200, "text/plain", "Connected");
+}
+
+void disconnect() {
+  s.disconnectFromComputer();
+  server.send(200, "text/plain", "Disconnected");
+}
+
+void setBus() {
+  String request = server.pathArg(0);
+
+  char pattern[16];
+  request.toCharArray(pattern, 16);
+
+  Serial.print("Pattern: ");
+  Serial.println(pattern);
+
+  s.setWriteMode();
+  delay(10);
+  s.setBus(pattern);
+
+  server.send(200, "text/plain", "Bus set");
+}
+
+void clearBus() {
+  s.clearBus();
+  server.send(200, "text/plain", "Bus cleared");
+}
+
 void healthcheck() {
   server.send(200, "text/plain", "A-OK");
 }
@@ -107,7 +168,22 @@ void setup() {
   server.on("/", help);
   server.on("/program", program);
   server.on("/reset", reset);
+
   server.on("/pulseClock", pulseClock);
+  server.on("/connect", connect);
+  server.on("/disconnect", disconnect);
+
+  server.on("/set-bus/{}", setBus);
+  server.on("/clear-bus", clearBus);
+
+  server.on("/enable-programming", enableProgrammingMode);
+  server.on("/disable-programming", disableProgrammingMode);
+
+  server.on("/enable-mi", enableMI);
+  server.on("/disable-mi", disableMI);
+  server.on("/enable-ri", enableRI);
+  server.on("/disable-ri", disableRI);
+
   server.on("/healthcheck", healthcheck);
 
   server.begin();
