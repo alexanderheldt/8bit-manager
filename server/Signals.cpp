@@ -29,6 +29,15 @@ void setDataPinsTo(int mode) {
 }
 
 void Signals::init() {
+  disconnectFromComputer();
+
+  // ENABLE_PROGRAMMING_MODE_AL is the only signal that
+  // needs to be active at all time to control the ROM
+  // output
+  digitalWrite(ENABLE_PROGRAMMING_MODE_AL, HIGH);
+  pinMode(ENABLE_PROGRAMMING_MODE_AL, OUTPUT);
+}
+
 void Signals::connectToComputer() {
   // Set all pins to active outputs
   clearBus();
