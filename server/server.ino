@@ -43,6 +43,7 @@ void program() {
     }
   }
 
+  s.connectToComputer();
   s.enableProgrammingMode();
   s.pulseReset();
 
@@ -68,6 +69,7 @@ void program() {
   s.pulseReset();
   s.clearBus();
   s.disableProgrammingMode();
+  s.disconnectFromComputer();
 
   server.send(200, "text/plain", "Programming completed");
 }
