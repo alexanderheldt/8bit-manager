@@ -7,11 +7,12 @@ class Signals {
     static const int MI, RI;
 
     void init();
-    void setReadMode();
+
     void connectToComputer();
     void disconnectFromComputer();
 
     void setWriteMode();
+    void setReadMode();
 
     void setBus(char data[]);
     void clearBus();
