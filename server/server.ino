@@ -56,18 +56,17 @@ void program() {
     s.setBus(address);
     s.pulsePinWithClock(s.MI);
 
-    delay(1 * 1000);
+    delay(10);
 
-    Serial.print("data: ");
+    Serial.print("data: \t");
     Serial.println(data);
     s.setBus(data);
     s.pulsePinWithClock(s.RI);
 
-    delay(1 * 1000);
+    delay(10);
   }
 
   s.pulseReset();
-  s.clearBus();
   s.disableProgrammingMode();
   s.disconnectFromComputer();
 
