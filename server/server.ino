@@ -127,9 +127,11 @@ void setBus() {
   Serial.print("Pattern: ");
   Serial.println(pattern);
 
+  s.enableProgrammingMode();
   s.setWriteMode();
   delay(10);
   s.setBus(pattern);
+  s.disableProgrammingMode();
 
   server.send(200, "text/plain", "Bus set");
 }
