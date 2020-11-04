@@ -3,7 +3,7 @@
 
 // clock signals and programming mode are active low
 const int CLK_AL = 13;
-const int ENABLE_MANUAL_CLK_AL = 12;
+const int ENABLE_MANUAL_CLK_AL = 25;
 const int ENABLE_PROGRAMMING_MODE_AL = 32;
 
 const int RESET = 14;
