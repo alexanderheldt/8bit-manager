@@ -109,23 +109,23 @@ void Signals::disableProgrammingMode() {
 
 void Signals::pulseClock() {
   digitalWrite(CLK_AL, HIGH);
-  delay(10);
+  delay(100);
   digitalWrite(CLK_AL, LOW);
-  delay(10);
+  delay(100);
   digitalWrite(CLK_AL, HIGH);
 }
 
 void Signals::pulsePinWithClock(int pin) {
   digitalWrite(pin, LOW);
-  delay(10);
+  delay(100);
   digitalWrite(pin, HIGH);
-  delay(10);
+  delay(100);
 
   pulseClock();
-  delay(10);
+  delay(100);
 
   digitalWrite(pin, LOW);
-  delay(10);
+  delay(100);
 }
 
 void Signals::pulseReset() {
