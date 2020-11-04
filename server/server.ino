@@ -50,6 +50,7 @@ void program() {
     s.pulsePinWithClock(s.MI);
 
     delay(100);
+    s.clearBus();
 
     Serial.print("data: \t");
     Serial.println(data);
@@ -57,6 +58,7 @@ void program() {
     s.pulsePinWithClock(s.RI);
 
     delay(100);
+    s.clearBus();
   }
 
   s.pulseReset();
