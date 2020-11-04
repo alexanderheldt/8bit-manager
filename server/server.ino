@@ -2,18 +2,11 @@
 #include <WebServer.h>
 #include "Signals.h"
 
-const char* ssid = "";
-const char* password = "";
+const char* ssid = "yoalex";
+const char* password = "latkatt1";
 
 Signals s;
 WebServer server(80);
-
-void help() {
-  server.send( 200, "text/plain",
-    "Existing endpoints: \n \
-    /program POST program in the format: '<address> <data>' separated by new lines\n \
-    /healthcheck");
-}
 
 void program() {
   String request = server.arg(0);
@@ -165,7 +158,6 @@ void setup() {
   Serial.print("Server started on IP: ");
   Serial.println(WiFi.localIP());
 
-  server.on("/", help);
   server.on("/program", program);
   server.on("/reset", reset);
 
