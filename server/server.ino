@@ -44,7 +44,7 @@ void program() {
     char* address = addressDataPairs[i];
     char* data = addressDataPairs[i+1];
 
-    Serial.print("address: ");
+    Serial.print("address: \t");
     Serial.println(address);
     s.setBus(address);
     s.pulsePinWithClock(s.MI);
@@ -52,7 +52,7 @@ void program() {
     delay(100);
     s.clearBus();
 
-    Serial.print("data: \t");
+    Serial.print("data: \t\t");
     Serial.println(data);
     s.setBus(data);
     s.pulsePinWithClock(s.RI);
