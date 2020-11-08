@@ -8,17 +8,19 @@ const char* password = "latkatt1";
 Signals s;
 WebServer server(80);
 
+char programData[2048];
+char *lines[2048];
+char* addressDataPairs[2048];
+
 void program() {
   String request = server.arg(0);
 
-  char program[512];
-  request.toCharArray(program, 512);
+  request.toCharArray(programData, 2048);
 
   // Split program on new line
   int n = 0;
-  char *lines[512];
 
-  char *newLine = strtok(program, "\n");
+  char *newLine = strtok(programData, "\n");
   while (newLine != NULL) {
     lines[n++] = newLine;
     newLine = strtok(NULL, "\n");
@@ -26,7 +28,6 @@ void program() {
 
   // split all lines on " "
   int m = 0;
-  char* addressDataPairs[512];
 
   for (int i = 0; i < n; i++) {
     char *space = strtok(lines[i], " ");
